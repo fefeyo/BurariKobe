@@ -74,7 +74,15 @@ public class PlaceListFragment extends Fragment implements PlaceDetailFragment.D
                             final String result = new String(responseBody, "UTF-8");
                             final Gson gson = new Gson();
                             PlaceItem[] list = gson.fromJson(result, PlaceItem[].class);
-                            mAdapter.addAll(list);
+                            List<String> everList = MainActivity.everList;
+                            boolean flag = false;
+                            for(PlaceItem item : list){
+                                for(String place : everList){
+                                    if(item.spot.equals(place)) flag = true;
+                                }
+                                if(!flag) mAdapter.add(item);
+                                flag = false;
+                            }
                             mAdapter.notifyDataSetChanged();
                             Log.d("placeitems", list + "");
                         } catch (UnsupportedEncodingException e) {
@@ -97,26 +105,35 @@ public class PlaceListFragment extends Fragment implements PlaceDetailFragment.D
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         ButterKnife.reset(this);
     }
 
     @OnItemClick(R.id.place_list)
     void onItemClick(AdapterView<?> parent, int position) {
-//        ((MainActivity)getActivity()).nextPage(new MovingFragment());
-        final PlaceItem item = (PlaceItem) parent.getItemAtPosition(position);
-        fragment = new PlaceDetailFragment(item);
-        fragment.setOnDialogClickListener(this);
-        ((MainActivity) getActivity()).showDialogDetail(fragment);
+        if(!MainActivity.isFrontShown) {
+            final PlaceItem item = (PlaceItem) parent.getItemAtPosition(position);
+            fragment = new PlaceDetailFragment();
+            Bundle b = new Bundle();
+            b.putString("spot", item.spot);
+            b.putString("text", item.text);
+            b.putString("main", item.main);
+            b.putString("tel", item.tel);
+            b.putString("url", item.url);
+            fragment.setArguments(b);
+            fragment.setOnDialogClickListener(this);
+            ((MainActivity) getActivity()).showDialogDetail(fragment);
+        }
     }
 
     @Override
-    public void onPositiveClick(PlaceItem item) {
-        ((MainActivity) getActivity()).dismissDialogDetail(fragment);,
+    public void onPositiveClick(String title) {
+        ((MainActivity) getActivity()).dismissDialogDetail(fragment);
         PostFragment fragment = new PostFragment();
         Bundle b = new Bundle();
-        b.putString("next", item.spot);
+        b.putString("title", title);
+        MainActivity.everList.add(title);
         fragment.setArguments(b);
         ((MainActivity) getActivity()).nextPage(fragment);
     }

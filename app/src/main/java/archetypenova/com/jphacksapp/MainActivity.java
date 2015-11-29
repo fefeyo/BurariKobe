@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import archetypenova.com.jphacksapp.fragments.PlaceDetailFragment;
 import archetypenova.com.jphacksapp.fragments.SelectDistanceFragment;
 import archetypenova.com.jphacksapp.fragments.TopSplashFragment;
@@ -29,10 +32,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     @InjectView(R.id.container)
     FrameLayout container;
 
+    public static List<String> everList;
 
     public static double myLat = 0.0;
     public static double myLng = 0.0;
     public static int r = 0;
+
+    public static boolean isFrontShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         top = new TopSplashFragment();
+        everList = new ArrayList<>();
         mTransaction = getSupportFragmentManager().beginTransaction();
         mTransaction.add(R.id.front_container, top);
         mTransaction.commit();
@@ -69,8 +76,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mTransaction.addToBackStack(null);
         mTransaction.add(R.id.front_container, fragment);
         front.setBackgroundColor(Color.parseColor("#a4000000"));
-        container.getChildAt(0).setEnabled(false);
-        container.getChildAt(0).setClickable(false);
+        isFrontShown = true;
         mTransaction.commit();
     }
 
@@ -80,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mTransaction.remove(fragment);
         front.setBackgroundColor(Color.parseColor("#00000000"));
         container.setEnabled(true);
+        isFrontShown = false;
         mTransaction.commit();
     }
 
@@ -89,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             lm.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     0,
-                    10,
+                    1000,
                     this
             );
         }catch (SecurityException e){

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import archetypenova.com.jphacksapp.R;
@@ -31,15 +32,13 @@ public class PlaceDetailFragment extends Fragment {
     @InjectView(R.id.detail_text)
     TextView detailText;
     @InjectView(R.id.place_negative)
-    Button placeNegative;
+    ImageButton placeNegative;
     @InjectView(R.id.place_positive)
-    Button placePositive;
+    ImageButton placePositive;
     private DetailClickListener mListener;
-    private PlaceItem item;
 
-
-    public PlaceDetailFragment(PlaceItem item) {
-        this.item = item;
+    private String title;
+    public PlaceDetailFragment() {
     }
 
 
@@ -49,16 +48,18 @@ public class PlaceDetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_place_detail, container, false);
         ButterKnife.inject(this, v);
 
-        detailTitle.setText(item.spot);
-        detailText.setText(item.text);
-        detailGenre.setText(item.main);
-        detailTel.setText(item.tel);
-        detailUrl.setText(item.url);
+        Bundle b = getArguments();
+        title = b.getString("spot");
+        detailTitle.setText(title);
+        detailText.setText(b.getString("text"));
+        detailGenre.setText(b.getString("main"));
+        detailTel.setText(b.getString("tel"));
+        detailUrl.setText(b.getString("url"));
         Linkify.addLinks(detailUrl, Linkify.ALL);
         placePositive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onPositiveClick(item);
+                mListener.onPositiveClick(title);
             }
         });
         placeNegative.setOnClickListener(new View.OnClickListener() {
@@ -77,13 +78,13 @@ public class PlaceDetailFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         ButterKnife.reset(this);
     }
 
     interface DetailClickListener {
-        void onPositiveClick(PlaceItem item);
+        void onPositiveClick(String title);
 
         void onNegativeClick();
     }

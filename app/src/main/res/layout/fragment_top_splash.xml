@@ -1,10 +1,22 @@
-<TextView
-    android:id="@+id/top"
-    android:text="Burari\nKobe\n\ntouch"
-    android:gravity="center"
-    android:textSize="50dp"
-    android:textColor="#000"
-    android:background="#fff"
+<FrameLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:background="#94e1ba"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:background="@drawable/top"
+        android:paddingTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/top"
+            android:src="@drawable/start"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="50dp" />
+
+    </FrameLayout>
+
+</FrameLayout>

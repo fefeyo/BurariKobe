@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/place_text"
             android:text="ここにテキストが入ります\nここにテキストが入ります\nここにテキストが入ります"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textColor="#000"
             android:layout_margin="4dp"
             android:layout_width="match_parent"

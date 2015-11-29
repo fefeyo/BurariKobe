@@ -1,21 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#94e1ba"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#94e1ba">
 
-    <Spinner
-        android:id="@+id/distance_time"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:entries="@array/time" />
+        android:layout_height="match_parent"
+        android:background="@drawable/select_back"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/distance_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="決定"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@drawable/select_spinner"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+            <TextView
+                android:text="次の目的地まで"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/distance_time"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:entries="@array/time" />
+
+            <TextView
+                android:text="分で着きたい"
+                android:padding="8dp"
+                android:gravity="end"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/distance_submit"
+                android:src="@drawable/burari"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

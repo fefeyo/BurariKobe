@@ -85,28 +85,34 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:layout_height="wrap_content">
 
-                <Button
+                <ImageButton
                     android:id="@+id/place_negative"
-                    android:text="ボタン"
+                    android:src="@drawable/place_cancel"
                     android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginRight="4dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp" />
 
             </FrameLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:layout_height="wrap_content">
 
-                <Button
+                <ImageButton
                     android:id="@+id/place_positive"
-                    android:text="ボタン"
+                    android:src="@drawable/place_commit"
                     android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="150dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_height="50dp" />
 
             </FrameLayout>
 

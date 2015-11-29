@@ -1,0 +1,58 @@
+<FrameLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#94e1ba"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:background="@drawable/result"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:text="今日のぶらぶら結果"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <GridView
+            android:id="@+id/result"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:numColumns="3" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_gravity="center"
+                android:layout_height="50dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/result_top" />
+
+            <ImageButton
+                android:id="@+id/share"
+                android:layout_gravity="center"
+                android:layout_height="50dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:src="@drawable/result_share" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

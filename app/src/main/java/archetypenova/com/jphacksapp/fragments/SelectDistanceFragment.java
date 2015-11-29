@@ -34,8 +34,8 @@ public class SelectDistanceFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         ButterKnife.reset(this);
     }
 
