@@ -22,7 +22,7 @@ import butterknife.InjectView;
 /**
  * メイン画面
  */
-public class MainActivity extends AppCompatActivity implements LocationListener{
+public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private FragmentTransaction mTransaction;
     private LocationManager lm;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mTransaction.commit();
     }
 
-    public void showDialogDetail(final Fragment fragment){
+    public void showDialogDetail(final Fragment fragment) {
         mTransaction = getSupportFragmentManager().beginTransaction();
         mTransaction.setCustomAnimations(R.anim.dialog_start, R.anim.dialog_dismiss);
         mTransaction.addToBackStack(null);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mTransaction.commit();
     }
 
-    public void dismissDialogDetail(final Fragment fragment){
+    public void dismissDialogDetail(final Fragment fragment) {
         mTransaction = getSupportFragmentManager().beginTransaction();
         mTransaction.setCustomAnimations(R.anim.dialog_start, R.anim.dialog_dismiss);
         mTransaction.remove(fragment);
@@ -90,16 +90,27 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         mTransaction.commit();
     }
 
-    public void checkMyLocation(){
+    public void checkMyLocation() {
         try {
             lm = (LocationManager) getSystemService(LOCATION_SERVICE);
             lm.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
+                    LocationManager.NETWORK_PROVIDER,
                     0,
                     1000,
                     this
             );
-        }catch (SecurityException e){
+            if (lm.getAllProviders().contains(LocationManager.NETWORK_PROVIDER))
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+
+            if (lm.getAllProviders().contains(LocationManager.GPS_PROVIDER))
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+//            lm.requestLocationUpdates(
+//                    LocationManager.GPS_PROVIDER,
+//                    0,
+//                    1000,
+//                    this
+//            );
+        } catch (SecurityException e) {
             e.printStackTrace();
         }
     }
@@ -107,21 +118,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         try {
-            lm.removeUpdates(this);
+//            lm.removeUpdates(this);
             myLat = location.getLatitude();
             myLng = location.getLongitude();
-        }catch (SecurityException e){
+        } catch (SecurityException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {}
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
 
     @Override
-    public void onProviderEnabled(String provider) {}
+    public void onProviderEnabled(String provider) {
+    }
 
     @Override
-    public void onProviderDisabled(String provider) {}
+    public void onProviderDisabled(String provider) {
+    }
 
 }

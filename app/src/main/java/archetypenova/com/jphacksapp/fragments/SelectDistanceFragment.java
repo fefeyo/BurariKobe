@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import archetypenova.com.jphacksapp.MainActivity;
 import archetypenova.com.jphacksapp.R;
@@ -30,6 +31,8 @@ public class SelectDistanceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_select_distance, container, false);
         ButterKnife.inject(this, v);
+        ((MainActivity)getActivity()).checkMyLocation();
+
         return v;
     }
 
@@ -41,7 +44,11 @@ public class SelectDistanceFragment extends Fragment {
 
     @OnClick(R.id.distance_submit)
     void onClick(){
-        ((MainActivity)getActivity()).nextPage(new PlaceListFragment());
+        if(0 != MainActivity.r) {
+            ((MainActivity) getActivity()).nextPage(new PlaceListFragment());
+        }else{
+            Toast.makeText(getActivity(), "距離を選択してください", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

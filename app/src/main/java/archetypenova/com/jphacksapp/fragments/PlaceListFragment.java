@@ -66,7 +66,8 @@ public class PlaceListFragment extends Fragment implements PlaceDetailFragment.D
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(
                 getActivity().getApplicationContext(),
-                "http://archetypenova.sakura.ne.jp/jphacks/get_places.php",
+//                "http://archetypenova.sakura.ne.jp/jphacks/get_places.php",
+                "http://archetypenova.sakura.ne.jp/jphacks/get_places.php?r=" + MainActivity.r,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
