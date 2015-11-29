@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">JPHacksApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="time">
+        <item>クリックして時間を選択してください</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+</resources>

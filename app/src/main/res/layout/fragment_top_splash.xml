@@ -1,0 +1,10 @@
+<TextView
+    android:id="@+id/top"
+    android:text="Burari\nKobe\n\ntouch"
+    android:gravity="center"
+    android:textSize="50dp"
+    android:textColor="#000"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
