@@ -93,12 +93,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void checkMyLocation() {
         try {
             lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-            lm.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER,
-                    0,
-                    1000,
-                    this
-            );
+//            lm.requestLocationUpdates(
+//                    LocationManager.NETWORK_PROVIDER,
+//                    0,
+//                    1000,
+//                    this
+//            );
             if (lm.getAllProviders().contains(LocationManager.NETWORK_PROVIDER))
                 lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
 
